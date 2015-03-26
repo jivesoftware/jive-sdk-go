@@ -1,0 +1,3 @@
+[submodule "examples/go-json-rest"]
+	path = examples/go-json-rest
+	url = git@github.com:ant0ine/go-json-rest.git
