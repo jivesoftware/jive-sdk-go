@@ -1,0 +1,10 @@
+{
+  "name": "jive-sdk-go-example",
+  "description": "A barebones Jive Add-On Service written with Go",
+  "repository": "https://github.com/jivesoftware/jive-sdk-go",
+  "keywords": ["golang", "negroni"],
+  "success_url": "/",
+  "env": {
+      "BUILDPACK_URL": "https://github.com/kr/heroku-buildpack-go"
+  }
+}
