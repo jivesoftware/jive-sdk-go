@@ -24,8 +24,8 @@ There are two endpoints the SDK supports **/register** and **/unregister**
 
 ##/register
 Requested by Jive instance when an add-on is first installed or "reconnect service" is selected from Jive Add-on Manager. Up to 3 requests are made by Jive to connect to the endpoint.  
-Methods: `POST`
 
+Methods: `POST`
 Success: `200`
 
 Error:
