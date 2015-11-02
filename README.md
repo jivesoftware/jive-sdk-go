@@ -25,7 +25,9 @@ There are two endpoints the SDK supports **/register** and **/unregister**
 ##/register
 Requested by Jive instance when an add-on is first installed or "reconnect service" is selected from Jive Add-on Manager. Up to 3 requests are made by Jive to connect to the endpoint.  
 Methods: `POST`
+
 Success: `200`
+
 Error:
   `400 (Abort) - Not JSON`
   `401 (Fail) - Unable to register`
@@ -40,6 +42,7 @@ Error:
 
 #Header Validation
 There are two validations required, both using the SHA-256 hash implementation.
+
 1. Logic to validate add-on registration request is originating from an authentic Jive Instance by checking with the Jive Marketplace URL
 2. Verify that a signed-fetch request from an Opensocial container is valid.
 
