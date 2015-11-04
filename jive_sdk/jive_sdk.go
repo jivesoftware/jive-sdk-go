@@ -34,7 +34,7 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 	jiveSignature := ""
 	
 	// Make a map from the payload and filter out the JiveSignature 
-	data := make(map[string]string)
+	validationBlock := make(map[string]string)
 	payloadValues := reflect.ValueOf(payload)
 	payloadTypes := reflect.TypeOf(payload)
 	size := payloadValues.NumField()
@@ -42,7 +42,7 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 		key := payloadTypes.Field(i).Name
 		value := payloadValues.Field(i).Interface().(string)
 		if key != "JiveSignature"{
-			data[key] = value
+			validationBlock[key] = value
 		}else {
 			jiveSignature = value
 		}
@@ -51,26 +51,27 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 	// Logic for clientSecret
 	// Check if there is a clientSecret that exists outside of the payload
 	if existingSecret != ""{
-		if data["ClientSecret"] != ""{
+		if validationBlock["ClientSecret"] != ""{
 			panic("Registration event with no clientSecret. Invalid payload")
 			return false
 		}else{
-			secret := []byte(data["ClientSecret"])                                                           
-			h := sha256.New()                                                    
+			secret := []byte(validationBlock["ClientSecret"])                                                           
+			h := sha256.New()
 			h.Write(secret)                                                    
-			data["ClientString"] = hex.EncodeToString(h.Sum(nil))
+			validationBlock["ClientString"] = hex.EncodeToString(h.Sum(nil))
+			fmt.Printf("Hex Digest: %s", validationBlock["ClientString"])
 		}
 	}else{
-		if len(data["ClientSecret"]) != 0{
+		if len(validationBlock["ClientSecret"]) != 0{
 			fmt.Println("ClientSecret already in payload, ignoring argument. Make sure you are not passing in clientID on register events")
 		}else{
-			data["ClientSecret"] = existingSecret
+			validationBlock["ClientSecret"] = existingSecret
 		}
 	}
 	
 
 	keys := []string{}
-	for k := range data {
+	for k := range validationBlock {
 		keys = append(keys, k)
 	}
 	
@@ -80,11 +81,11 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 		lowerK :=[]rune(k)
 		lowerK[0] = unicode.ToLower(lowerK[0])
 		key := string(lowerK)
-		body += key + ":" + data[k] + "\n"
+		body += key + ":" + validationBlock[k] + "\n"
 	}
 	
 	// Post a request to Jive Market to Validate the Signature
-    jiveSignatureURL = data["JiveSignatureURL"]
+    jiveSignatureURL = validationBlock["JiveSignatureURL"]
 	req, err := http.NewRequest("POST", jiveSignatureURL, bytes.NewBufferString(body))
 	req.Header.Set("X-Jive-MAC", jiveSignature)
 	// fmt.Printf("Jive URL: %s\nBody: %v\nSignature: %s\n", jiveSignatureURL, bytes.NewBuffer(jsonBody), jiveSignature)
