@@ -68,7 +68,6 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 		}
 	}
 	
-
 	keys := []string{}
 	for k := range validationBlock {
 		keys = append(keys, k)
@@ -99,7 +98,7 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 		fmt.Printf("Validation Successful [%v]\n",resp.Status)
 		return true
 	}
-	fmt.Printf("Validation Failed [%s]", resp.Status)
+	fmt.Printf("Validation Failed [%v]", resp.Status)
 	return false
 }
 
@@ -130,7 +129,6 @@ func IsValidJiveRequest(authorization string, clientId string, clientSecret stri
 	}
 	
 	signature := payload["signature"]
-	
 	delete(payload,"signature")
 	
 	message := ""

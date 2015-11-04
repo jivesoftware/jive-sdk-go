@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"encoding/json"
-	"jive_sdk"
+	"jive-sdk-go/jive_sdk"
 )
 
 var clientID string

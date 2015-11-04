@@ -17,7 +17,8 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 - [ ] Documentation (include method defintions in README.md)
 
 #Testing Validation
-**Sample Payload**:
+Test your encoded secret with a known output by CURLing the payload below to the registration endpoint
+**Sample Payload**
 { clientId: '96pndr7f9t6k7kt10lpmpg73w0krikvf.i',
   code: 'i38k1q1w1dhheijudu2n9riaeqlsno2q.c',
   scope: 'uri:/api',
@@ -33,8 +34,9 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 
 
 # Begin Documentation
-## method(param1, param2)
-This is an example documentation with information about the parameter.
+## function method(param1, param2)
+This is an example documentation with information about the method. Describe what gets passed in, what it does, and what it returns (if anything).
+For methods that include a HTTP request, include response codes for successes and failures.
 
 ### Response Codes
 Success : `200`
