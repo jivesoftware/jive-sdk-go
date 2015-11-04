@@ -50,16 +50,15 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 	
 	// Logic for clientSecret
 	// Check if there is a clientSecret that exists outside of the payload
-	if existingSecret != ""{
-		if validationBlock["ClientSecret"] != ""{
+	if existingSecret == ""{
+		if validationBlock["ClientSecret"] == ""{
 			panic("Registration event with no clientSecret. Invalid payload")
 			return false
 		}else{
 			secret := []byte(validationBlock["ClientSecret"])                                                           
 			h := sha256.New()
 			h.Write(secret)                                                    
-			validationBlock["ClientString"] = hex.EncodeToString(h.Sum(nil))
-			fmt.Printf("Hex Digest: %s", validationBlock["ClientString"])
+			validationBlock["ClientSecret"] = hex.EncodeToString(h.Sum(nil))
 		}
 	}else{
 		if len(validationBlock["ClientSecret"]) != 0{
@@ -88,7 +87,7 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
     jiveSignatureURL = validationBlock["JiveSignatureURL"]
 	req, err := http.NewRequest("POST", jiveSignatureURL, bytes.NewBufferString(body))
 	req.Header.Set("X-Jive-MAC", jiveSignature)
-	// fmt.Printf("Jive URL: %s\nBody: %v\nSignature: %s\n", jiveSignatureURL, bytes.NewBuffer(jsonBody), jiveSignature)
+	fmt.Printf("\n\nJive URL: %s\n\nBody: %v\n\nSignature: %s\n", jiveSignatureURL, bytes.NewBufferString(body), jiveSignature)
     client := &http.Client{}
     resp, err := client.Do(req)
     if err != nil {
