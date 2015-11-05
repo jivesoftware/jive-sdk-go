@@ -17,7 +17,8 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 - [ ] Documentation (include method defintions in README.md)
 
 #Testing Validation
-Test your encoded secret with a known output by CURLing the payload below to the registration endpoint
+Test your encoded secret with a known output by CURLing the payload below to the registration endpoint  
+  
   **Sample Payload:**
 ```
 {  
