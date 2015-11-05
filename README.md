@@ -18,6 +18,7 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 
 #Testing Validation
 Test your encoded secret with a known output by CURLing the payload below to the registration endpoint
+
 **Sample Payload**
 ```
 {  
@@ -44,4 +45,5 @@ For methods that include a HTTP request, include response codes for successes an
 
 ### Response Codes
 Success : `204`
+
 Failure : `403`
