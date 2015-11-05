@@ -18,8 +18,7 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 
 #Testing Validation
 Test your encoded secret with a known output by CURLing the payload below to the registration endpoint
-
-**Sample Payload**
+  **Sample Payload:**
 ```
 {  
   "clientId": "i5j15eikcd5u2xntgk5zu4lt93zkgx6z.i",
