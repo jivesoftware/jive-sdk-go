@@ -24,7 +24,7 @@ type Payload struct {
 	JiveSignatureURL string `json:"JiveSignatureURL"`
 	ClientSecret string `json:"clientSecret,omitempty"`
 	JiveSignature string `json:"jiveSignature"`
-	JiveURL string `json:"jiveURL"`
+	JiveUrl string `json:"jiveURL"`
 	Timestamp string `json:"timestamp"`
 }
 
@@ -68,6 +68,8 @@ func IsValidRegistraton(payload Payload, existingSecret string) bool{
 		}
 	}
 	
+	// Byte string of all keys to be sorted in alphabetical order
+	// After sorting, keys and values are strung together to be sent to JiveSignatureURL  
 	keys := []string{}
 	for k := range validationBlock {
 		keys = append(keys, k)

@@ -1,10 +1,14 @@
+/*
+Test Service for Jive-SDK written in Go Lang
+*/
+
 package main
 
 import (
 	"fmt"
 	"net/http"
 	"encoding/json"
-	"jive-sdk-go/jive_sdk"
+	"./jive_sdk"
 )
 
 var clientID string
@@ -12,7 +16,7 @@ var clientSecret string
 
 /* 
 // Use this initializing function if clientID and clientSecret will be stored 
-// in a DB or file and passed in procedurally
+// in a DB or file and passed in procedurally or any activities before runtime
 func init {
    // initialization code here    
 }
@@ -25,20 +29,31 @@ func main (){
 		err := decoder.Decode(&data)
 		if err != nil {
 			fmt.Println(err)
+			rw.WriteHeader(http.StatusInternalServerError)
 		}
-			jive_sdk.IsValidRegistraton(data, clientSecret)
-        })
+		statusCode := jive_sdk.IsValidRegistraton(data, clientSecret)
+		if statusCode{
+			rw.WriteHeader(http.StatusNoContent)
+		}else{
+			rw.WriteHeader(http.StatusForbidden)	
+		}
+	})
  
- http.HandleFunc("/unregister", func(rw http.ResponseWriter, req *http.Request) {
+ 	http.HandleFunc("/unregister", func(rw http.ResponseWriter, req *http.Request) {
 		decoder := json.NewDecoder(req.Body)
 		data := jive_sdk.Payload{}
 		err := decoder.Decode(&data)
 		if err != nil {
 			fmt.Println(err)
+			rw.WriteHeader(http.StatusInternalServerError)
 		}
-		secret := clientSecret
-			jive_sdk.IsValidRegistraton(data, secret)
-        })
+		statusCode := jive_sdk.IsValidRegistraton(data, clientSecret)
+		if statusCode{
+			rw.WriteHeader(http.StatusNoContent)
+		}else{
+			rw.WriteHeader(http.StatusForbidden)	
+		}
+	})
  
-    http.ListenAndServe(":8090", nil)
+	http.ListenAndServe(":8090", nil)
 }

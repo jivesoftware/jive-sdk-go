@@ -19,25 +19,29 @@ Please reference the [Jive-SDK-Your-Way Bounty](https://community.jivesoftware.c
 #Testing Validation
 Test your encoded secret with a known output by CURLing the payload below to the registration endpoint
 **Sample Payload**
-{ clientId: '96pndr7f9t6k7kt10lpmpg73w0krikvf.i',
-  code: 'i38k1q1w1dhheijudu2n9riaeqlsno2q.c',
-  scope: 'uri:/api',
-  tenantId: 'b22e3911-28ef-480c-ae3b-ca791ba86952',
-  jiveSignatureURL: 'https://market.apps.jivesoftware.com/appsmarket/services/rest/jive/instance/validation/8ce5c231-fab8-46b1-b8b2-fc65deccbb5d',
-  clientSecret: 'nhi8a9mcpg51tdx7hwhlbxj5biutck.s',
-  jiveSignature: '2ZNaB5hnn8gJgSELneU//6D2T0+n/rUf9uIFDKyRlAo=',
-  jiveUrl: 'https://sandbox.jiveon.com',
-  timestamp: '2015-11-04T00:39:25.361+0000' }
+```
+{  
+  "clientId": "i5j15eikcd5u2xntgk5zu4lt93zkgx6z.i",
+  "clientSecret": "7wmyigctxbopc22jo7u4xorxsn2m9r04.s",
+  "code": "nki1dxrtl3r2q3kkgorwfkrmik234ppw.c",
+  "scope": "uri:/api",
+  "jiveUrl": "http://ws-z0-120493.jiveland.com:8080",
+  "jiveSignature": "dtuW522kpoayRLFkPq6l3MOXxoKwfyNHsgGMlitr9PM=",
+  "jiveSignatureURL": "https://market.apps.jivesoftware.com/appsmarket/services/rest/jive/instance/validation/29c38d1a-9c8a-4ec5-9b55-56fc44a5a402",
+  "tenantId": "0ee9ae5c-4702-49eb-a716-3d46de4b10d3",
+  "timestamp": "2013-07-12T15:28:46.493Z"  
+}
+```
 
-**Sample Hex Digest Output**: 
-1b32eea102a83b3ea74ac550a770283ab35dc87033ab115c4a1d1a784d998ca6
+**ClientSecret Hex Digest Output**:
+`67988da9f1378acbff239942f39a4eecb8684e82a8a7c17abc7c333a5623580e`
 
 
 # Begin Documentation
 ## function method(param1, param2)
 This is an example documentation with information about the method. Describe what gets passed in, what it does, and what it returns (if anything).
-For methods that include a HTTP request, include response codes for successes and failures.
+For methods that include a HTTP request, include response codes for successes and failures as shown below.
 
 ### Response Codes
-Success : `200`
+Success : `204`
 Failure : `403`
