@@ -8,7 +8,8 @@ import (
 	"fmt"
 	"net/http"
 	"encoding/json"
-	"./jive_sdk"
+	
+	"github.com/jivesoftware/jive-sdk-go-gpm"
 )
 
 var clientID string
